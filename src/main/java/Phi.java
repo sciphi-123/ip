@@ -29,7 +29,6 @@ public class Phi {
         this.checkInput();
     }
 
-
     public static void main(String[] args) {
         Phi phi = new Phi();
         phi.greet();
