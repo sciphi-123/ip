@@ -26,38 +26,39 @@ public class Phi {
 
     public void checkInput() {
         Scanner input = new Scanner(System.in);
-        String userInput = input.nextLine();
-        if (userInput.equals("bye")) {
-            this.exit();
-            return;
-        } else if (userInput.equals("list")) {
-            this.listInput();
-        } else if (userInput.startsWith("mark ")) {
-            // "mark " contains 5 characters.
-            int doneIndex = Integer.parseInt(userInput.substring(5));
-            Task doneTask = this.list.get(doneIndex - 1);
-            doneTask.markDone();
-            System.out.println(doneTask);
-            System.out.println();
-        } else if (userInput.startsWith("unmark ")) {
-            // "unmark " contains 7 characters.
-            int undoneIndex = Integer.parseInt(userInput.substring(7));
-            Task undoneTask = this.list.get(undoneIndex - 1);
-            undoneTask.markUndone();
-            System.out.println(undoneTask);
-            System.out.println();
-        } else if (userInput.startsWith("todo ")){
-            String description = userInput.substring(5);
-            this.addInput(new Todo(description));
-        } else if (userInput.startsWith("deadline ")) {
-            // remove task type; "deadline " contains 9 characters
-            String[] clean = userInput.substring(9).split(" /");
-            this.addInput(new Deadline(clean[0], clean[1].substring(3)));
-        } else if (userInput.startsWith("event ")) {
-            String[] clean = userInput.substring(6).split(" /");
-            this.addInput(new Event(clean[0], clean[1].substring(5), clean[2].substring(3)));
+        while (true) {
+            String userInput = input.nextLine();
+            if (userInput.equals("bye")) {
+                this.exit();
+                break;
+            } else if (userInput.equals("list")) {
+                this.listInput();
+            } else if (userInput.startsWith("mark ")) {
+                // "mark " contains 5 characters.
+                int doneIndex = Integer.parseInt(userInput.substring(5));
+                Task doneTask = this.list.get(doneIndex - 1);
+                doneTask.markDone();
+                System.out.println(doneTask);
+                System.out.println();
+            } else if (userInput.startsWith("unmark ")) {
+                // "unmark " contains 7 characters.
+                int undoneIndex = Integer.parseInt(userInput.substring(7));
+                Task undoneTask = this.list.get(undoneIndex - 1);
+                undoneTask.markUndone();
+                System.out.println(undoneTask);
+                System.out.println();
+            } else if (userInput.startsWith("todo ")) {
+                String description = userInput.substring(5);
+                this.addInput(new Todo(description));
+            } else if (userInput.startsWith("deadline ")) {
+                // remove task type; "deadline " contains 9 characters
+                String[] clean = userInput.substring(9).split(" /");
+                this.addInput(new Deadline(clean[0], clean[1].substring(3)));
+            } else if (userInput.startsWith("event ")) {
+                String[] clean = userInput.substring(6).split(" /");
+                this.addInput(new Event(clean[0], clean[1].substring(5), clean[2].substring(3)));
+            }
         }
-        this.checkInput();
     }
 
     public void addInput(Task userTask) {
