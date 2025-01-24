@@ -28,35 +28,91 @@ public class Phi {
         Scanner input = new Scanner(System.in);
         while (true) {
             String userInput = input.nextLine();
-            if (userInput.equals("bye")) {
-                this.exit();
-                break;
-            } else if (userInput.equals("list")) {
-                this.listInput();
-            } else if (userInput.startsWith("mark ")) {
-                // "mark " contains 5 characters.
-                int doneIndex = Integer.parseInt(userInput.substring(5));
-                Task doneTask = this.list.get(doneIndex - 1);
-                doneTask.markDone();
-                System.out.println(doneTask);
-                System.out.println();
-            } else if (userInput.startsWith("unmark ")) {
-                // "unmark " contains 7 characters.
-                int undoneIndex = Integer.parseInt(userInput.substring(7));
-                Task undoneTask = this.list.get(undoneIndex - 1);
-                undoneTask.markUndone();
-                System.out.println(undoneTask);
-                System.out.println();
-            } else if (userInput.startsWith("todo ")) {
-                String description = userInput.substring(5);
-                this.addInput(new Todo(description));
-            } else if (userInput.startsWith("deadline ")) {
-                // remove task type; "deadline " contains 9 characters
-                String[] clean = userInput.substring(9).split(" /");
-                this.addInput(new Deadline(clean[0], clean[1].substring(3)));
-            } else if (userInput.startsWith("event ")) {
-                String[] clean = userInput.substring(6).split(" /");
-                this.addInput(new Event(clean[0], clean[1].substring(5), clean[2].substring(3)));
+            try {
+                if (userInput.equals("bye")) {
+                    this.exit();
+                    break;
+                } else if (userInput.equals("list")) {
+                    this.listInput();
+                } else if (userInput.startsWith("mark")) {
+                    String[] userArr = userInput.split(" ");
+                    if (userArr.length < 2) {
+                        throw new PhiException("No description given. Please give one!");
+                    } else if (userArr.length >= 3){
+                        throw new PhiException("Expected format: mark [number]");
+                    } else {
+                        // "mark " contains 5 characters.
+                        int doneIndex = Integer.parseInt(userInput.substring(5));
+                        Task doneTask = this.list.get(doneIndex - 1);
+                        doneTask.markDone();
+                        System.out.println(doneTask);
+                        System.out.println();
+                    }
+                } else if (userInput.startsWith("unmark")) {
+                    String[] userArr = userInput.split(" ");
+                    if (userArr.length < 2) {
+                        throw new PhiException("No description given. Please give one!");
+                    } else if (userArr.length >= 3) {
+                        throw new PhiException("Expected format: unmark [number]");
+                    } else {
+                        // "unmark " contains 7 characters.
+                        int undoneIndex = Integer.parseInt(userInput.substring(7));
+                        Task undoneTask = this.list.get(undoneIndex - 1);
+                        undoneTask.markUndone();
+                        System.out.println(undoneTask);
+                        System.out.println();
+                    }
+                } else if (userInput.startsWith("todo")) {
+                    String[] userArr = userInput.split(" ");
+                    if (userArr.length < 2) {
+                        throw new PhiException("No description given. Please give one!");
+                    } else {
+                        String description = userInput.substring(5);
+                        this.addInput(new Todo(description));
+                    }
+                } else if (userInput.startsWith("deadline")) {
+                    String[] userArr = userInput.split(" ");
+                    if (userArr.length < 2) {
+                        throw new PhiException("No description given. Please give one!");
+                    } else {
+                        // remove task type; "deadline " contains 9 characters
+                        String[] clean = userInput.substring(9).split(" /by");
+                        if (clean.length != 2) {
+                            throw new PhiException("Expected format: deadline [description] /by [deadline]");
+                        } else {
+                            this.addInput(new Deadline(clean[0], clean[1]));
+                        }
+                    }
+                } else if (userInput.startsWith("event")) {
+                    String[] userArr = userInput.split(" ");
+                    if (userArr.length < 2) {
+                        throw new PhiException("No description given. Please give one!");
+                    } else {
+                        // remove task type; "event " contains 6 characters
+                        String[] clean1 = userInput.substring(6).split(" /from");
+                        if (clean1.length != 2) {
+                            throw new PhiException("Expected format: deadline [description] /from [from time] /to [to time]");
+                        } else {
+                            String[] clean2 = clean1[1].split(" /to");
+                            if (clean2.length != 2) {
+                                throw new PhiException("Expected format: deadline [description] /from [from time] /to [to time]");
+                            } else {
+                                this.addInput(new Event(clean1[0], clean2[0], clean2[1]));
+                            }
+                        }
+                    }
+                } else {
+                    throw new PhiException("This is not a valid command!");
+                }
+            } catch (PhiException e) {
+                System.out.println("Error: " + e.getMessage());
+                System.out.println(" ");
+            } catch (NumberFormatException e) {
+                System.out.println("Give a number!");
+                System.out.println(" ");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("The number entered is not within range!");
+                System.out.println(" ");
             }
         }
     }
