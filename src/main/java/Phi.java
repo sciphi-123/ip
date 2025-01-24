@@ -37,7 +37,7 @@ public class Phi {
                 } else if (userInput.startsWith("mark")) {
                     String[] userArr = userInput.split(" ");
                     if (userArr.length < 2) {
-                        throw new PhiException("No description given. Please give one!");
+                        throw new PhiException("No number given. Please give one!");
                     } else if (userArr.length >= 3){
                         throw new PhiException("Expected format: mark [number]");
                     } else {
@@ -51,7 +51,7 @@ public class Phi {
                 } else if (userInput.startsWith("unmark")) {
                     String[] userArr = userInput.split(" ");
                     if (userArr.length < 2) {
-                        throw new PhiException("No description given. Please give one!");
+                        throw new PhiException("No number given. Please give one!");
                     } else if (userArr.length >= 3) {
                         throw new PhiException("Expected format: unmark [number]");
                     } else {
@@ -68,7 +68,7 @@ public class Phi {
                         throw new PhiException("No description given. Please give one!");
                     } else {
                         String description = userInput.substring(5);
-                        this.addInput(new Todo(description));
+                        this.addTask(new Todo(description));
                     }
                 } else if (userInput.startsWith("deadline")) {
                     String[] userArr = userInput.split(" ");
@@ -80,7 +80,7 @@ public class Phi {
                         if (clean.length != 2) {
                             throw new PhiException("Expected format: deadline [description] /by [deadline]");
                         } else {
-                            this.addInput(new Deadline(clean[0], clean[1]));
+                            this.addTask(new Deadline(clean[0], clean[1]));
                         }
                     }
                 } else if (userInput.startsWith("event")) {
@@ -97,9 +97,21 @@ public class Phi {
                             if (clean2.length != 2) {
                                 throw new PhiException("Expected format: deadline [description] /from [from time] /to [to time]");
                             } else {
-                                this.addInput(new Event(clean1[0], clean2[0], clean2[1]));
+                                this.addTask(new Event(clean1[0], clean2[0], clean2[1]));
                             }
                         }
+                    }
+                } else if (userInput.startsWith("delete")) {
+                    String[] userArr = userInput.split(" ");
+                    if (userArr.length < 2) {
+                        throw new PhiException("No number given. Please give one!");
+                    } else if (userArr.length >= 3){
+                        throw new PhiException("Expected format: delete [number]");
+                    } else {
+                        // "delete " contains 7 characters.
+                        int deleteIndex = Integer.parseInt(userInput.substring(7));
+                        Task taskDeleted = this.list.get(deleteIndex - 1);
+                        this.deleteTask(taskDeleted);
                     }
                 } else {
                     throw new PhiException("This is not a valid command!");
@@ -117,10 +129,17 @@ public class Phi {
         }
     }
 
-    public void addInput(Task userTask) {
+    public void addTask(Task userTask) {
         System.out.println("Got it. I've added this task:");
         System.out.println(String.format("  %s", userTask));
         this.list.add(userTask);
+        this.taskCount();
+    }
+
+    public void deleteTask(Task userTask) {
+        System.out.println("Noted. I've removed this task:");
+        System.out.println(String.format("  %s", userTask));
+        this.list.remove(userTask);
         this.taskCount();
     }
 
