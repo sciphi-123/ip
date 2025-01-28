@@ -1,1 +1,4 @@
-
+[T][ ] read book
+[E][ ] project meeting (from: Feb 2 2019 to: Feb 3 2019)
+[D][ ] finish project (by: Jan 10 2020)
+[E][ ] team outing (from: Jan 1 2021 to: Jan 2 2021)

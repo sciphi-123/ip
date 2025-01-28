@@ -1,12 +1,12 @@
 todo read book
-deadline submit assignment /by Sunday
-event project meeting /from Monday /to Tuesday
+deadline submit assignment /by 2019-01-01
+event project meeting /from 2019-02-02 /to 2019-02-03
 list
 mark 1
 unmark 1
 todo write report
-deadline finish project /by Friday
-event team outing /from Saturday /to Sunday
+deadline finish project /by 2020-01-10
+event team outing /from 2021-01-01 /to 2021-01-02
 list
 mark 3
 mark 4
