@@ -19,6 +19,16 @@ public class Phi {
         System.out.println();
     }
 
+    public void echo(String input) {
+        System.out.print("added: ");
+        System.out.println(input);
+        System.out.println();
+    }
+
+    public void exit() {
+        System.out.println("Bye. Hope to see you again soon!");
+    }
+
     public void checkInput() {
         Scanner input = new Scanner(System.in);
         while (true) {
