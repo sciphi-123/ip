@@ -1,3 +1,4 @@
+Error loading tasks: .\data\phi.txt (The system cannot find the path specified)
 Hello! I'm Phi!
 What can I do for you?
 
@@ -52,6 +53,35 @@ Nice! I've marked this task as done:
 
 Ok, I've marked this task as not done yet:
 [E][ ] project meeting (from: Monday to: Tuesday)
+
+Here are the tasks in your list:
+1.[T][ ] read book
+2.[D][ ] submit assignment (by: Sunday)
+3.[E][ ] project meeting (from: Monday to: Tuesday)
+4.[T][X] write report
+5.[D][ ] finish project (by: Friday)
+6.[E][ ] team outing (from: Saturday to: Sunday)
+
+Noted. I've removed this task:
+  [T][X] write report
+Now you have 5 tasks in the list.
+
+Here are the tasks in your list:
+1.[T][ ] read book
+2.[D][ ] submit assignment (by: Sunday)
+3.[E][ ] project meeting (from: Monday to: Tuesday)
+4.[D][ ] finish project (by: Friday)
+5.[E][ ] team outing (from: Saturday to: Sunday)
+
+Noted. I've removed this task:
+  [D][ ] submit assignment (by: Sunday)
+Now you have 4 tasks in the list.
+
+Here are the tasks in your list:
+1.[T][ ] read book
+2.[E][ ] project meeting (from: Monday to: Tuesday)
+3.[D][ ] finish project (by: Friday)
+4.[E][ ] team outing (from: Saturday to: Sunday)
 
 Bye. Hope to see you again soon!
 
