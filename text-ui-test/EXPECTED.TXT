@@ -1,3 +1,4 @@
+Error loading tasks: .\data\phi.txt (The system cannot find the path specified)
 Hello! I'm Phi!
 What can I do for you?
 

@@ -1,0 +1,5 @@
+[T][ ] read book
+[D][ ] submit assignment (by: Sunday)
+[E][ ] project meeting (from: Monday to: Tuesday)
+[D][X] finish project (by: Friday)
+[E][ ] team outing (from: Saturday to: Sunday)
