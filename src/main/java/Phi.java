@@ -1,4 +1,6 @@
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -85,7 +87,8 @@ public class Phi {
                         if (clean.length != 2) {
                             throw new PhiException("Expected format: deadline [description] /by [deadline]");
                         } else {
-                            this.addTask(new Deadline(clean[0], clean[1]));
+                            System.out.println(clean[1]);
+                            this.addTask(new Deadline(clean[0], LocalDate.parse(clean[1].trim())));
                         }
                     }
                 } else if (userInput.startsWith("event")) {
@@ -102,7 +105,7 @@ public class Phi {
                             if (clean2.length != 2) {
                                 throw new PhiException("Expected format: event [description] /from [from time] /to [to time]");
                             } else {
-                                this.addTask(new Event(clean1[0], clean2[0], clean2[1]));
+                                this.addTask(new Event(clean1[0], LocalDate.parse(clean2[0].trim()), LocalDate.parse(clean2[1].trim())));
                             }
                         }
                     }
@@ -130,6 +133,9 @@ public class Phi {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("The number entered is not within range!");
                 System.out.println(" ");
+            } catch (DateTimeParseException e) {
+                System.out.println("Please enter valid date(s) in the format yyyy-mm-dd.");
+                System.out.println();
             }
         }
     }
@@ -176,7 +182,7 @@ public class Phi {
                 case 'D':
                     String[] deadlineParts = description.split(" \\(by: ");
                     if (deadlineParts.length == 2) {
-                        return new Deadline(deadlineParts[0], isDone, " " + deadlineParts[1].replace(")", ""));
+                        return new Deadline(deadlineParts[0], isDone, LocalDate.parse(deadlineParts[1].replace(")", "")));
                     }
                     break;
                 case 'E':
@@ -184,7 +190,7 @@ public class Phi {
                     if (eventParts.length == 2) {
                         String[] timeParts = eventParts[1].split(" to: ");
                         if (timeParts.length == 2) {
-                            return new Event(eventParts[0], isDone, " " + timeParts[0], " " + timeParts[1].replace(")", ""));
+                            return new Event(eventParts[0], isDone, LocalDate.parse(timeParts[0]), LocalDate.parse(timeParts[1].replace(")", "")));
                         }
                     }
                     break;

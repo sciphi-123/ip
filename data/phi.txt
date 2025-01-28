@@ -1,5 +1,4 @@
-[T][ ] read book
-[D][ ] submit assignment (by: Sunday)
-[E][ ] project meeting (from: Monday to: Tuesday)
-[D][X] finish project (by: Friday)
-[E][ ] team outing (from: Saturday to: Sunday)
+[T][X] 1
+[D][ ] submit assignment (by: Feb 12 2019)
+[E][ ] project meeting (from: Feb 28 2025 to: Feb 27 2025)
+[E][ ] team outing (from: Jan 1 2019 to: Jan 5 2019)

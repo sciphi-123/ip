@@ -1,4 +1,1 @@
-[T][ ] read book
-[E][ ] project meeting (from: Monday to: Tuesday)
-[D][ ] finish project (by: Friday)
-[E][ ] team outing (from: Saturday to: Sunday)
+
