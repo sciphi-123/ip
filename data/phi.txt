@@ -1,1 +1,4 @@
 [T][ ] hi
+[T][X] task 1
+[T][X] task 2
+[T][ ] read book
