@@ -102,6 +102,13 @@ public class Parser {
         return index - 1;
     }
 
+    /**
+     * Parses the user input for the "find" command and extracts the keyword.
+     *
+     * @param line The full command input from the user.
+     * @return The keyword to search for in the task list.
+     * @throws PhiException If no keyword is provided in the command.
+     */
     public static String parseFind(String line) throws PhiException {
         String[] userArr = line.split(" ");
         if (userArr.length < 2) {

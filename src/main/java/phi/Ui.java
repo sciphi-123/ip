@@ -116,6 +116,11 @@ public class Ui {
         System.out.println();
     }
 
+    /**
+     * Prints the tasks that match the given search criteria.
+     *
+     * @param tasks A list of tasks that contain the keyword in their description.
+     */
     public void printFound(List<Task> tasks) {
         if (tasks.isEmpty()) {
             System.out.println("No matching results found.");
@@ -127,5 +132,4 @@ public class Ui {
         }
         System.out.println();
     }
-
 }

@@ -1,12 +1,4 @@
 [T][ ] read book
-[T][ ] read book
 [E][ ] project meeting (from: Feb 2 2019 to: Feb 3 2019)
-[T][ ] write report
-[D][ ] finish project (by: Jan 10 2020)
-[E][ ] team outing (from: Jan 1 2021 to: Jan 2 2021)
-[T][ ] read book
-[D][ ] submit assignment (by: Jan 1 2019)
-[E][ ] project meeting (from: Feb 2 2019 to: Feb 3 2019)
-[T][ ] write report
 [D][ ] finish project (by: Jan 10 2020)
 [E][ ] team outing (from: Jan 1 2021 to: Jan 2 2021)
