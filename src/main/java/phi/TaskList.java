@@ -1,13 +1,14 @@
 package phi;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a list of tasks. Provides methods to manage tasks such as adding, deleting,
  * marking as done, and retrieving tasks.
  */
 public class TaskList {
-    private final ArrayList<Task> list;
+    private final List<Task> list;
 
     /**
      * Constructs an empty task list.
@@ -76,6 +77,16 @@ public class TaskList {
         Task task = list.get(index);
         task.markUndone();
         return task;
+    }
+
+    public List<Task> findTasks(String keyword) {
+        List<Task> result = new ArrayList<>();
+        for (Task t : list) {
+            if (t.getDescription().contains(keyword)) {
+                result.add(t);
+            }
+        }
+        return result;
     }
 
     /**

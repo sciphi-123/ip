@@ -1,5 +1,6 @@
 package phi;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -110,6 +111,18 @@ public class Ui {
             for (int i = 0; i < tasks.size(); i++) {
                 Task temp = tasks.getTask(i);
                 System.out.println(String.format("%d.%s", i + 1, temp));
+            }
+        }
+        System.out.println();
+    }
+
+    public void printFound(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            System.out.println("No matching results found.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println(String.format("%d. %s", i + 1, tasks.get(i)));
             }
         }
         System.out.println();

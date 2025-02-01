@@ -101,4 +101,14 @@ public class Parser {
         }
         return index - 1;
     }
+
+    public static String parseFind(String line) throws PhiException {
+        String[] userArr = line.split(" ");
+        if (userArr.length < 2) {
+            throw new PhiException("No keyword given. Please give one!");
+        } else {
+            // remove task type; "find " contains 5 characters
+            return line.substring(5);
+        }
+    }
 }

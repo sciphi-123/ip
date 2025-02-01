@@ -1,6 +1,7 @@
 package phi;
 
 import java.time.format.DateTimeParseException;
+import java.util.List;
 
 /**
  * The main class that runs the Phi task management application. It handles user input,
@@ -92,6 +93,10 @@ public class Phi {
                 task = Parser.parseEvent(line);
                 tasks.addTask(task);
                 ui.printAdded(task, tasks.size());
+            } else if (line.startsWith("find")) {
+                String keyword = Parser.parseFind(line);
+                List<Task> relevantTasks = tasks.findTasks(keyword);
+                ui.printFound(relevantTasks);
             } else {
                 throw new PhiException("This is not a valid command!");
             }
