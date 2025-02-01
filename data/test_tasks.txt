@@ -1,0 +1,3 @@
+[T][ ] Buy milk
+[D][ ] Submit report (by: Feb 1 2025)
+[E][ ] Team meeting (from: Feb 1 2025 to: Feb 2 2025)
