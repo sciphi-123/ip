@@ -2,7 +2,22 @@ package phi;
 
 import java.time.LocalDate;
 
+/**
+ * A utility class that provides methods for parsing various task types
+ * from user input strings. It includes methods to parse Todo, Deadline,
+ * and Event tasks, as well as to parse task indices for marking, unmarking,
+ * or deleting tasks.
+ */
 public class Parser {
+
+    /**
+     * Parses a Todo task from a string input.
+     * The input should contain a description for the Todo task.
+     *
+     * @param line The user input string containing the task description.
+     * @return A Todo task with the parsed description.
+     * @throws PhiException If the description is missing.
+     */
     public static Task parseTodo(String line) throws PhiException {
         String[] userArr = line.split(" ");
         if (userArr.length < 2) {
@@ -13,6 +28,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a Deadline task from a string input.
+     * The input should contain a description and a deadline date in the format "/by [date]".
+     *
+     * @param line The user input string containing the task description and deadline.
+     * @return A Deadline task with the parsed description and deadline.
+     * @throws PhiException If the description or deadline is missing or the format is incorrect.
+     */
     public static Task parseDeadline(String line) throws PhiException {
         String[] userArr = line.split(" ");
         if (userArr.length < 2) {
@@ -28,6 +51,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses an Event task from a string input.
+     * The input should contain a description, start date, and end date in the format "/from [date] /to [date]".
+     *
+     * @param line The user input string containing the task description, start date, and end date.
+     * @return An Event task with the parsed description, start date, and end date.
+     * @throws PhiException If the description, start date, or end date is missing or the format is incorrect.
+     */
     public static Task parseEvent(String line) throws PhiException {
         String[] userArr = line.split(" ");
         if (userArr.length < 2) {
@@ -48,6 +79,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses an index from a string input.
+     * The input should contain a task index for marking, unmarking, or deleting a task.
+     *
+     * @param line The user input string containing the task index.
+     * @param maxIndex The maximum valid task index.
+     * @return The parsed index, adjusted to zero-based indexing.
+     * @throws PhiException If the index is invalid or out of range.
+     */
     public static int parseIndex(String line, int maxIndex) throws PhiException {
         int index;
         try {

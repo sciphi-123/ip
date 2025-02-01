@@ -4,9 +4,20 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This class handles the storage of tasks by saving and loading them to/from a file.
+ * It is responsible for reading and writing tasks to a file and parsing them to appropriate task objects.
+ */
 public class Storage {
+
     private String textFilePath;
 
+    /**
+     * Constructs a Storage object with the given file path.
+     * If the directory does not exist, it will be created.
+     *
+     * @param textFilePath The path to the file where tasks are stored.
+     */
     public Storage(String textFilePath) {
         this.textFilePath = textFilePath;
         File file = new File(this.textFilePath);
@@ -17,6 +28,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the tasks to the file specified in the textFilePath.
+     * The tasks are written to the file in a format that can later be parsed back into Task objects.
+     *
+     * @param tasks The list of tasks to be saved.
+     */
     public void saveTasks(TaskList tasks) {
         try {
             File dir = new File("./data/");
@@ -24,7 +41,7 @@ public class Storage {
                 dir.mkdirs();
             }
             try (FileWriter fw = new FileWriter(textFilePath, false)) {
-                for (int i = 0; i < tasks.size(); i++){
+                for (int i = 0; i < tasks.size(); i++) {
                     Task task = tasks.getTask(i);
                     fw.write(task.toString() + System.lineSeparator());
                 }
@@ -34,6 +51,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from the file specified in the textFilePath and adds them to the provided TaskList.
+     * Each line in the file is parsed into a Task object.
+     *
+     * @param tasks The TaskList to which the tasks will be added.
+     */
     public void loadTasks(TaskList tasks) {
         try (BufferedReader br = new BufferedReader(new FileReader(textFilePath))) {
             String line;
@@ -48,6 +71,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Parses a line of text into a corresponding Task object.
+     * This method assumes the line is formatted correctly and contains information about the task type, description, and status.
+     *
+     * @param line A line of text representing a task.
+     * @return The Task object parsed from the line, or null if the line cannot be parsed.
+     */
     private Task parseTask(String line) {
         try {
             char taskType = line.charAt(1);
