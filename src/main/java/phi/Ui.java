@@ -32,8 +32,8 @@ public class Ui {
     /**
      * Prints a farewell message when the program is exiting.
      */
-    public void exit() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public String exit() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -42,10 +42,8 @@ public class Ui {
      * @param task The task that was added.
      * @param size The current number of tasks in the list.
      */
-    public void printAdded(Task task, int size) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task);
-        this.taskCount(size);
+    public String printAdded(Task task, int size) {
+        return "Got it. I've added this task:\n" + task + "\n" + this.taskCount(size);
     }
 
     /**
@@ -54,10 +52,8 @@ public class Ui {
      * @param task The task that was deleted.
      * @param size The current number of tasks in the list.
      */
-    public void printDeleted(Task task, int size) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(task);
-        this.taskCount(size);
+    public String printDeleted(Task task, int size) {
+        return "Noted. I've removed this task:\n" + task + "\n" + this.taskCount(size);
     }
 
     /**
@@ -65,10 +61,8 @@ public class Ui {
      *
      * @param task The task that was marked as done.
      */
-    public void printMarked(Task task) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(task);
-        System.out.println();
+    public String printMarked(Task task) {
+        return "Nice! I've marked this task as done:\n" + task + "\n\n";
     }
 
     /**
@@ -76,10 +70,8 @@ public class Ui {
      *
      * @param task The task that was marked as not done.
      */
-    public void printUnmarked(Task task) {
-        System.out.println("Ok, I've marked this task as not done yet:");
-        System.out.println(task);
-        System.out.println();
+    public String printUnmarked(Task task) {
+        return "Ok, I've marked this task as not done yet:\n" + task + "\n\n";
     }
 
     /**
@@ -87,15 +79,14 @@ public class Ui {
      *
      * @param listSize The current size of the task list.
      */
-    public void taskCount(int listSize) {
+    public String taskCount(int listSize) {
         if (listSize == 0) {
-            System.out.println("Now you have no task in the list.");
+            return "Now you have no task in the list.\n\n";
         } else if (listSize == 1) {
-            System.out.println("Now you have 1 task in the list.");
+            return "Now you have 1 task in the list.\n\n";
         } else {
-            System.out.println("Now you have " + listSize +  " tasks in the list.");
+            return "Now you have " + listSize +  " tasks in the list.\n\n";
         }
-        System.out.println();
     }
 
     /**
@@ -103,17 +94,16 @@ public class Ui {
      *
      * @param tasks The task list containing all tasks.
      */
-    public void printAllTasks(TaskList tasks) {
+    public String printAllTasks(TaskList tasks) {
         if (tasks.isEmpty()) {
-            System.out.println("There are no tasks in your list.");
+            return "There are no tasks in your list.";
         } else {
-            System.out.println("Here are the tasks in your list:");
+            StringBuilder sb = new StringBuilder();
             for (int i = 0; i < tasks.size(); i++) {
-                Task temp = tasks.getTask(i);
-                System.out.println(String.format("%d.%s", i + 1, temp));
+                sb.append(String.format("%d.%s\n", i + 1, tasks.getTask(i)));
             }
+            return "Here are the tasks in your list:\n" + sb.toString();
         }
-        System.out.println();
     }
 
     /**
