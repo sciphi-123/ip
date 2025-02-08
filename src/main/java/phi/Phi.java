@@ -33,13 +33,14 @@ public class Phi {
      * Greets the user and enters a loop where it continuously reads user input,
      * processes commands, and handles exceptions. The loop ends when the user types "bye".
      */
-    public void phi() {
+    public String run(String input) {
         ui.greet();
         while (isRunning) {
             try {
                 String line = ui.readCommand();
-                isRunning = this.checkInput(line);
+                String output = this.checkInput(line);
                 storage.saveTasks(tasks);
+                return output;
             } catch (PhiException e) {
                 System.out.println("Error: " + e.getMessage());
                 System.out.println();
@@ -54,6 +55,7 @@ public class Phi {
                 System.out.println();
             }
         }
+        return "";
     }
 
     /**
@@ -64,12 +66,11 @@ public class Phi {
      * @return A boolean value indicating whether the application should continue running.
      * @throws PhiException If the input command is invalid.
      */
-    public boolean checkInput(String line) throws PhiException {
+    public String checkInput(String line) throws PhiException {
         try {
             Task task;
             if (line.equals("bye")) {
                 ui.exit();
-                return false;
             } else if (line.equals("list")) {
                 ui.printAllTasks(tasks);
             } else if (line.startsWith("mark")) {
@@ -104,16 +105,6 @@ public class Phi {
             System.out.println(e.getMessage());
             System.out.println();
         }
-        return true;
-    }
-
-    /**
-     * The main entry point for the Phi application.
-     * Initializes a new Phi instance and starts the application.
-     *
-     * @param args Command-line arguments (not used in this case).
-     */
-    public static void main(String[] args) {
-        new Phi("./data/phi.txt").phi();
+        return "";
     }
 }
