@@ -17,21 +17,28 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
     private Phi phi;
+    private boolean newSession = true;
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image phiImage = new Image(this.getClass().getResourceAsStream("/images/Phi.png"));
+
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        sendButton.setOnAction(event -> handleUserInput());
     }
 
     public void setPhi(Phi p) {
         this.phi = p;
+
+        if (newSession) {
+            dialogContainer.getChildren().add(DialogBox.getPhiDialog(Ui.greet(), phiImage));
+        }
     }
 
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = phi.run(input);
+        String response = phi.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getPhiDialog(response, phiImage)

@@ -23,10 +23,8 @@ public class Ui {
     /**
      * Greets the user when the program starts.
      */
-    public void greet() {
-        System.out.println("Hello! I'm Phi!");
-        System.out.println("What can I do for you?");
-        System.out.println();
+    public static String greet() {
+        return "Hello! I'm Phi!\n" + "What can I do for you?\n\n";
     }
 
     /**
@@ -111,15 +109,22 @@ public class Ui {
      *
      * @param tasks A list of tasks that contain the keyword in their description.
      */
-    public void printFound(List<Task> tasks) {
+    public String printFound(List<Task> tasks) {
+        StringBuilder sb = new StringBuilder();
+
         if (tasks.isEmpty()) {
-            System.out.println("No matching results found.");
+            sb.append("No matching results found.");
         } else {
-            System.out.println("Here are the matching tasks in your list:");
+            sb.append("Here are the matching tasks in your list:\n");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println(String.format("%d. %s", i + 1, tasks.get(i)));
+                sb.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
             }
         }
-        System.out.println();
+        sb.append("\n");
+        return sb.toString();
+    }
+
+    public String returnError(String message) {
+        return message;
     }
 }

@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Storage {
 
-    private String textFilePath;
+    private static String FILE_PATH = "./data/phi.txt";
 
     /**
      * Constructs a Storage object with the given file path.
@@ -23,8 +23,8 @@ public class Storage {
      * @param textFilePath The path to the file where tasks are stored.
      */
     public Storage(String textFilePath) {
-        this.textFilePath = textFilePath;
-        File file = new File(this.textFilePath);
+        this.FILE_PATH = textFilePath;
+        File file = new File(this.FILE_PATH);
         File dir = file.getParentFile();
 
         if (dir != null && !dir.exists()) {
@@ -38,13 +38,13 @@ public class Storage {
      *
      * @param tasks The list of tasks to be saved.
      */
-    public void saveTasks(TaskList tasks) {
+    public static void saveTasks(TaskList tasks) {
         try {
             File dir = new File("./data/");
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            try (FileWriter fw = new FileWriter(textFilePath, false)) {
+            try (FileWriter fw = new FileWriter(FILE_PATH, false)) {
                 for (int i = 0; i < tasks.size(); i++) {
                     Task task = tasks.getTask(i);
                     fw.write(task.toString() + System.lineSeparator());
@@ -59,10 +59,11 @@ public class Storage {
      * Loads tasks from the file specified in the textFilePath and adds them to the provided TaskList.
      * Each line in the file is parsed into a Task object.
      *
-     * @param tasks The TaskList to which the tasks will be added.
      */
-    public void loadTasks(TaskList tasks) {
-        try (BufferedReader br = new BufferedReader(new FileReader(textFilePath))) {
+    public static TaskList loadTasks() {
+        TaskList tasks = new TaskList();
+        File file = new File(FILE_PATH);
+        try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = br.readLine()) != null) {
                 Task task = parseTask(line);
@@ -73,6 +74,7 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("Error loading tasks: " + e.getMessage());
         }
+        return tasks;
     }
 
     /**
@@ -82,7 +84,7 @@ public class Storage {
      * @param line A line of text representing a task.
      * @return The Task object parsed from the line, or null if the line cannot be parsed.
      */
-    private Task parseTask(String line) {
+    private static Task parseTask(String line) {
         try {
             char taskType = line.charAt(1);
             boolean isDone = line.charAt(4) == 'X';

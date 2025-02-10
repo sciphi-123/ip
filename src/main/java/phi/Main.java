@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    private Phi phi = new Phi("./data/phi.txt");
+    private final Phi phi = new Phi();
 
     @Override
     public void start(Stage stage) {
@@ -17,7 +17,7 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setPhi(this.phi);
+            fxmlLoader.<MainWindow>getController().setPhi(phi);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
