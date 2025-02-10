@@ -4,14 +4,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a deadline task with a description and a deadline date.
- * A Deadline task has a description, a status indicating whether it's done, and a date by which it needs to be completed.
+ * Represents a Deadline task, which has a description and a specific deadline date by which it must be completed.
+ * A Deadline task is a type of Task, with an additional field to store the deadline date.
+ * It can also track whether the task has been completed or not.
  */
 public class Deadline extends Task {
     protected LocalDate by;
 
     /**
      * Constructs a Deadline task with a description and a deadline date.
+     * The task is initially marked as not completed.
      *
      * @param description A description of the deadline task.
      * @param by The date by which the task needs to be completed.
@@ -23,9 +25,10 @@ public class Deadline extends Task {
 
     /**
      * Constructs a Deadline task with a description, completion status, and a deadline date.
+     * This constructor allows you to specify whether the task is done or not.
      *
      * @param description A description of the deadline task.
-     * @param isDone A boolean indicating whether the task is completed.
+     * @param isDone A boolean indicating whether the task is completed (true) or not (false).
      * @param by The date by which the task needs to be completed.
      */
     public Deadline(String description, boolean isDone, LocalDate by) {
@@ -36,7 +39,7 @@ public class Deadline extends Task {
     /**
      * Returns the date by which the task is due.
      *
-     * @return The deadline date of the task.
+     * @return The deadline date of the task as a LocalDate object.
      */
     public LocalDate getBy() {
         return this.by;
@@ -45,8 +48,9 @@ public class Deadline extends Task {
     /**
      * Returns a string representation of the Deadline task, including the description,
      * completion status, and the deadline date formatted as "MMM d yyyy".
+     * The status is indicated with a mark such as "[✓]" for done or "[✘]" for not done.
      *
-     * @return A string representation of the Deadline task in the format:
+     * @return A string representing the Deadline task in the format:
      *         "[D][status] description (by: deadline_date)".
      */
     @Override

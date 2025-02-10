@@ -16,8 +16,6 @@ public class Phi {
     /**
      * Constructs a Phi application with the specified file path for task storage.
      * Initializes the UI, storage, and task list. Loads existing tasks from storage.
-     *
-     * The file path for storing tasks.
      */
     public Phi() {
         this.ui = new Ui();
@@ -32,6 +30,9 @@ public class Phi {
      * Starts the Phi task management application.
      * Greets the user and enters a loop where it continuously reads user input,
      * processes commands, and handles exceptions. The loop ends when the user types "bye".
+     *
+     * @param input The user input command.
+     * @return The response generated based on the user input.
      */
     public String getResponse(String input) {
         try {
@@ -54,7 +55,7 @@ public class Phi {
      * Valid commands include "bye", "list", "mark", "unmark", "delete", "todo", "deadline", and "event".
      *
      * @param line The user input command.
-     * @return A boolean value indicating whether the application should continue running.
+     * @return The output message after executing the command.
      * @throws PhiException If the input command is invalid.
      */
     public String checkInput(String line) throws PhiException {

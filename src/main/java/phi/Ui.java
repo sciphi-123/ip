@@ -22,6 +22,8 @@ public class Ui {
 
     /**
      * Greets the user when the program starts.
+     *
+     * @return A greeting message from the application.
      */
     public static String greet() {
         return "Hello! I'm Phi!\n" + "What can I do for you?\n\n";
@@ -29,6 +31,8 @@ public class Ui {
 
     /**
      * Prints a farewell message when the program is exiting.
+     *
+     * @return A goodbye message when the application exits.
      */
     public String exit() {
         return "Bye. Hope to see you again soon!";
@@ -39,6 +43,7 @@ public class Ui {
      *
      * @param task The task that was added.
      * @param size The current number of tasks in the list.
+     * @return A confirmation message about the task addition.
      */
     public String printAdded(Task task, int size) {
         return "Got it. I've added this task:\n" + task + "\n" + this.taskCount(size);
@@ -49,6 +54,7 @@ public class Ui {
      *
      * @param task The task that was deleted.
      * @param size The current number of tasks in the list.
+     * @return A confirmation message about the task deletion.
      */
     public String printDeleted(Task task, int size) {
         return "Noted. I've removed this task:\n" + task + "\n" + this.taskCount(size);
@@ -58,6 +64,7 @@ public class Ui {
      * Prints a message confirming that a task has been marked as done.
      *
      * @param task The task that was marked as done.
+     * @return A confirmation message about the task being marked as done.
      */
     public String printMarked(Task task) {
         return "Nice! I've marked this task as done:\n" + task + "\n\n";
@@ -67,6 +74,7 @@ public class Ui {
      * Prints a message confirming that a task has been marked as not done yet.
      *
      * @param task The task that was marked as not done.
+     * @return A confirmation message about the task being marked as not done yet.
      */
     public String printUnmarked(Task task) {
         return "Ok, I've marked this task as not done yet:\n" + task + "\n\n";
@@ -76,6 +84,7 @@ public class Ui {
      * Prints the number of tasks currently in the task list.
      *
      * @param listSize The current size of the task list.
+     * @return A message displaying the task count.
      */
     public String taskCount(int listSize) {
         if (listSize == 0) {
@@ -91,6 +100,7 @@ public class Ui {
      * Prints all tasks in the task list.
      *
      * @param tasks The task list containing all tasks.
+     * @return A string representation of all tasks in the list.
      */
     public String printAllTasks(TaskList tasks) {
         if (tasks.isEmpty()) {
@@ -108,6 +118,7 @@ public class Ui {
      * Prints the tasks that match the given search criteria.
      *
      * @param tasks A list of tasks that contain the keyword in their description.
+     * @return A string representation of the matching tasks.
      */
     public String printFound(List<Task> tasks) {
         StringBuilder sb = new StringBuilder();
@@ -124,6 +135,12 @@ public class Ui {
         return sb.toString();
     }
 
+    /**
+     * Returns the error message to be displayed.
+     *
+     * @param message The error message to be shown.
+     * @return The error message.
+     */
     public String returnError(String message) {
         return message;
     }
