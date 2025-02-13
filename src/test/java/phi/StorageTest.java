@@ -1,14 +1,18 @@
 package phi;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class StorageTest {
     private static final String FILE_PATH = "./data/test_tasks.txt";
@@ -44,9 +48,8 @@ public class StorageTest {
     @Test
     public void testLoadTasks() {
         storage.saveTasks(taskList);
-
         TaskList newTaskList = new TaskList();
-        storage.loadTasks(newTaskList);
+        storage.loadTasks();
 
         assertEquals(3, newTaskList.size(), "There should be 3 tasks loaded.");
         Task task1 = newTaskList.getTask(0);
@@ -58,7 +61,9 @@ public class StorageTest {
         assertTrue(task3 instanceof Event, "Third task should be an Event.");
 
         assertEquals("Buy milk", ((Todo) task1).getDescription(), "First task description should be 'Buy milk'.");
-        assertEquals("Submit report", ((Deadline) task2).getDescription(), "Second task description should be 'Submit report'.");
-        assertEquals("Team meeting", ((Event) task3).getDescription(), "Third task description should be 'Team meeting'.");
+        assertEquals("Submit report", (
+                (Deadline) task2).getDescription(), "Second task description should be 'Submit report'.");
+        assertEquals("Team meeting", (
+                (Event) task3).getDescription(), "Third task description should be 'Team meeting'.");
     }
 }
