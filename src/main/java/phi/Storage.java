@@ -80,7 +80,8 @@ public class Storage {
 
     /**
      * Parses a line of text into a corresponding Task object.
-     * This method assumes the line is formatted correctly and contains information about the task type, description, and status.
+     * This method assumes the line is formatted correctly and contains
+     * information about the task type, description, and status.
      *
      * @param line A line of text representing a task.
      * @return The Task object parsed from the line, or null if the line cannot be parsed.
@@ -92,26 +93,32 @@ public class Storage {
             String description = line.substring(6).trim();
 
             switch (taskType) {
-                case 'T':
-                    return new Todo(description, isDone);
-                case 'D':
-                    String[] deadlineParts = description.split(" \\(by: ");
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
-                    if (deadlineParts.length == 2) {
-                        return new Deadline(deadlineParts[0], isDone, LocalDate.parse(deadlineParts[1].replace(")", ""), formatter));
+            case 'T':
+                return new Todo(description, isDone);
+            case 'D':
+                String[] deadlineParts = description.split(" \\(by: ");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+                if (deadlineParts.length == 2) {
+                    return new Deadline(deadlineParts[0], isDone,
+                            LocalDate.parse(deadlineParts[1].replace(")", ""), formatter));
+                }
+                break;
+            case 'E':
+                String[] eventParts = description.split(" \\(from: ");
+                DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMM d yyyy");
+                if (eventParts.length == 2) {
+                    String[] timeParts = eventParts[1].split(" to: ");
+                    if (timeParts.length == 2) {
+                        return new Event(eventParts[0], isDone,
+                                LocalDate.parse(timeParts[0], formatter1),
+                                LocalDate.parse(timeParts[1].replace(")", ""), formatter1));
                     }
-                    break;
-                case 'E':
-                    String[] eventParts = description.split(" \\(from: ");
-                    DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("MMM d yyyy");
-                    if (eventParts.length == 2) {
-                        String[] timeParts = eventParts[1].split(" to: ");
-                        if (timeParts.length == 2) {
-                            return new Event(eventParts[0], isDone, LocalDate.parse(timeParts[0], formatter1), LocalDate.parse(timeParts[1].replace(")", ""), formatter1));
-                        }
-                    }
-                    break;
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid task type: " + taskType);
             }
+
         } catch (Exception e) {
             System.out.println("Error parsing task: " + e.getMessage());
         }

@@ -92,7 +92,7 @@ public class Ui {
         } else if (listSize == 1) {
             return "Now you have 1 task in the list.\n\n";
         } else {
-            return "Now you have " + listSize +  " tasks in the list.\n\n";
+            return "Now you have " + listSize + " tasks in the list.\n\n";
         }
     }
 
