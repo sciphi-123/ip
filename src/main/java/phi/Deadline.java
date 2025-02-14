@@ -48,7 +48,7 @@ public class Deadline extends Task {
     /**
      * Returns a string representation of the Deadline task, including the description,
      * completion status, and the deadline date formatted as "MMM d yyyy".
-     * The status is indicated with a mark such as "[✓]" for done or "[✘]" for not done.
+     * The status is indicated with a mark such as "[X]" for done or "[ ]" for not done.
      *
      * @return A string representing the Deadline task in the format:
      *         "[D][status] description (by: deadline_date)".
