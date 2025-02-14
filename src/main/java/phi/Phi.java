@@ -36,6 +36,7 @@ public class Phi {
      */
     public String getResponse(String input) {
         try {
+            assert input != null: "User input should not be null";
             String output = this.checkInput(input);
             Storage.saveTasks(tasks);
             return output;
@@ -72,19 +73,27 @@ public class Phi {
                 task = tasks.unmarkTask(Parser.parseIndex(line, tasks.size()));
                 return ui.printUnmarked(task);
             } else if (line.startsWith("delete")) {
+                int tempSize = tasks.size();
                 task = tasks.deleteTask(Parser.parseIndex(line, tasks.size()));
+                assert tempSize - 1 == tasks.size(): "Size of the list of tasks should decrease by 1";
                 return ui.printDeleted(task, tasks.size());
             } else if (line.startsWith("todo")) {
                 task = Parser.parseTodo(line);
+                int tempSize = tasks.size();
                 tasks.addTask(task);
+                assert tempSize + 1 == tasks.size(): "Size of the list of tasks should increase by 1";
                 return ui.printAdded(task, tasks.size());
             } else if (line.startsWith("deadline")) {
                 task = Parser.parseDeadline(line);
+                int tempSize = tasks.size();
                 tasks.addTask(task);
+                assert tempSize + 1 == tasks.size(): "Size of the list of tasks should increase by 1";
                 return ui.printAdded(task, tasks.size());
             } else if (line.startsWith("event")) {
                 task = Parser.parseEvent(line);
+                int tempSize = tasks.size();
                 tasks.addTask(task);
+                assert tempSize + 1 == tasks.size(): "Size of the list of tasks should increase by 1";
                 return ui.printAdded(task, tasks.size());
             } else if (line.startsWith("find")) {
                 String keyword = Parser.parseFind(line);
