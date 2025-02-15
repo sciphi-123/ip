@@ -22,7 +22,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
     private Phi phi;
-    private boolean newSession = true;
+    private boolean isNewSession = true;
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
     private Image phiImage = new Image(this.getClass().getResourceAsStream("/images/Phi.png"));
 
@@ -45,7 +45,7 @@ public class MainWindow extends AnchorPane {
     public void setPhi(Phi p) {
         this.phi = p;
 
-        if (newSession) {
+        if (isNewSession) {
             dialogContainer.getChildren().add(DialogBox.getPhiDialog(Ui.greet(), phiImage));
         }
     }
