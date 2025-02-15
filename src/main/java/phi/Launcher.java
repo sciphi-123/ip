@@ -3,7 +3,7 @@ package phi;
 import javafx.application.Application;
 
 /**
- * A launcher class to workaround classpath issues by launching the JavaFX application.
+ * A launcher class to work around classpath issues by launching the JavaFX application.
  * This class serves as an entry point for the application, resolving issues that may arise
  * when directly running the JavaFX application class.
  */
