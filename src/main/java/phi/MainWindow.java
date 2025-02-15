@@ -64,8 +64,5 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getPhiDialog(response, phiImage)
         );
         userInput.clear();
-        if (input.equalsIgnoreCase("bye")) {
-            System.exit(0);
-        }
     }
 }

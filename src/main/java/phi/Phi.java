@@ -72,44 +72,44 @@ public class Phi {
     public String checkInput(String line) throws PhiException {
         try {
             Task task;
-            if (line.equals("bye")) {
+            if (line.toLowerCase().equals("bye")) {
                 return ui.exit();
-            } else if (line.equals("list")) {
+            } else if (line.toLowerCase().equals("list")) {
                 return ui.printAllTasks(tasks);
-            } else if (line.startsWith("mark")) {
+            } else if (line.toLowerCase().startsWith("mark")) {
                 task = tasks.markTask(Parser.parseIndex(line, tasks.size()));
                 return ui.printMarked(task);
-            } else if (line.startsWith("unmark")) {
+            } else if (line.toLowerCase().startsWith("unmark")) {
                 task = tasks.unmarkTask(Parser.parseIndex(line, tasks.size()));
                 return ui.printUnmarked(task);
-            } else if (line.startsWith("delete")) {
+            } else if (line.toLowerCase().startsWith("delete")) {
                 int tempSize = tasks.size();
                 task = tasks.deleteTask(Parser.parseIndex(line, tasks.size()));
                 assert tempSize - 1 == tasks.size(): "Size of the list of tasks should decrease by 1";
                 return ui.printDeleted(task, tasks.size());
-            } else if (line.startsWith("todo")) {
+            } else if (line.toLowerCase().startsWith("todo")) {
                 task = Parser.parseTodo(line);
                 int tempSize = tasks.size();
                 tasks.addTask(task);
                 assert tempSize + 1 == tasks.size(): "Size of the list of tasks should increase by 1";
                 return ui.printAdded(task, tasks.size());
-            } else if (line.startsWith("deadline")) {
+            } else if (line.toLowerCase().startsWith("deadline")) {
                 task = Parser.parseDeadline(line);
                 int tempSize = tasks.size();
                 tasks.addTask(task);
                 assert tempSize + 1 == tasks.size(): "Size of the list of tasks should increase by 1";
                 return ui.printAdded(task, tasks.size());
-            } else if (line.startsWith("event")) {
+            } else if (line.toLowerCase().startsWith("event")) {
                 task = Parser.parseEvent(line);
                 int tempSize = tasks.size();
                 tasks.addTask(task);
                 assert tempSize + 1 == tasks.size(): "Size of the list of tasks should increase by 1";
                 return ui.printAdded(task, tasks.size());
-            } else if (line.startsWith("find")) {
+            } else if (line.toLowerCase().startsWith("find")) {
                 String keyword = Parser.parseFind(line);
                 List<Task> relevantTasks = tasks.findTasks(keyword);
                 return ui.printFound(relevantTasks);
-            } else if (line.startsWith("sort")) {
+            } else if (line.toLowerCase().startsWith("sort")) {
                 tasks.sortTasks();
                 return ui.printSortedTasks(tasks);
             } else {
