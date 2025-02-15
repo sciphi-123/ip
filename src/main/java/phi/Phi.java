@@ -52,12 +52,22 @@ public class Phi {
     }
 
     /**
-     * Checks the input command and performs the corresponding action.
-     * Valid commands include "bye", "list", "mark", "unmark", "delete", "todo", "deadline", and "event".
+     * Processes the user input command and performs the corresponding action.
+     * Valid commands include:
+     * - "bye"       : Exits the program.
+     * - "list"      : Displays all tasks.
+     * - "mark"      : Marks a task as completed.
+     * - "unmark"    : Marks a task as incomplete.
+     * - "delete"    : Removes a task from the list.
+     * - "todo"      : Adds a new to-do task.
+     * - "deadline"  : Adds a new deadline task.
+     * - "event"     : Adds a new event task.
+     * - "find"      : Searches for tasks containing a given keyword.
+     * - "sort"      : Sorts the tasks based on their type and date.
      *
      * @param line The user input command.
-     * @return The output message after executing the command.
-     * @throws PhiException If the input command is invalid.
+     * @return The response message after executing the command.
+     * @throws PhiException if the input command is invalid.
      */
     public String checkInput(String line) throws PhiException {
         try {
@@ -99,6 +109,9 @@ public class Phi {
                 String keyword = Parser.parseFind(line);
                 List<Task> relevantTasks = tasks.findTasks(keyword);
                 return ui.printFound(relevantTasks);
+            } else if (line.startsWith("sort")) {
+                tasks.sortTasks();
+                return ui.printSortedTasks(tasks);
             } else {
                 throw new PhiException("This is not a valid command!");
             }

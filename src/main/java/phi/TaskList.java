@@ -1,6 +1,7 @@
 package phi;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -111,5 +112,14 @@ public class TaskList {
      */
     public boolean isEmpty() {
         return list.isEmpty();
+    }
+
+    /**
+     * Sorts the list of tasks using TaskComparator.
+     * Deadlines are sorted by their due date, and events are sorted by their start date.
+     * The sorting order ensures that deadlines come before other task types.
+     */
+    public void sortTasks() {
+        Collections.sort(list, new TaskComparator());
     }
 }

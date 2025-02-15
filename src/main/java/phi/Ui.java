@@ -104,7 +104,7 @@ public class Ui {
      */
     public String printAllTasks(TaskList tasks) {
         if (tasks.isEmpty()) {
-            return "There are no tasks in your list.";
+            return "There are no tasks in your list.\n";
         } else {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < tasks.size(); i++) {
@@ -133,6 +133,17 @@ public class Ui {
         }
         sb.append("\n");
         return sb.toString();
+    }
+
+    /**
+     * Returns a string representation of all tasks in the given task list,
+     * followed by a message indicating that the tasks have been sorted.
+     *
+     * @param task the TaskList containing the tasks to be printed
+     * @return a string listing all tasks and a confirmation message
+     */
+    public String printSortedTasks(TaskList task) {
+        return printAllTasks(task) + "\n" + "The tasks have been sorted.";
     }
 
     /**

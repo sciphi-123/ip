@@ -42,9 +42,27 @@ public class Event extends Task {
     }
 
     /**
+     * Gets the start date.
+     *
+     * @return the starting date as a LocalDate
+     */
+    public LocalDate getFrom() {
+        return from;
+    }
+
+    /**
+     * Gets the end date.
+     *
+     * @return the ending date as a LocalDate
+     */
+    public LocalDate getTo() {
+        return to;
+    }
+
+    /**
      * Returns a string representation of the Event task, including the description,
      * completion status, and the start and end dates of the event formatted as "MMM d yyyy".
-     * The status is indicated with a mark such as "[✓]" for done or "[✘]" for not done.
+     * The status is indicated with a mark such as "[X]" for done or "[ ]" for not done.
      *
      * @return A string representing the Event task in the format:
      *         "[E][status] description (from: start_date to: end_date)".
