@@ -1,5 +1,4 @@
-[D][ ] submit playbook (by: Jan 3 2025)
-[E][ ] sunset (from: Jan 1 2025 to: Jan 1 2024)
-[E][ ] sunrise (from: Jan 1 2025 to: Jan 2 2025)
-[T][ ] aa
-[T][ ] ab
+[T][ ] a
+[T][ ] a
+[D][ ] a (by: Jan 1 2024)
+[E][ ] a (from: Jan 1 2024 to: Jan 1 2024)

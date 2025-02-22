@@ -38,7 +38,7 @@ public class Parser {
      */
     public static Task parseDeadline(String line) throws PhiException {
         String[] userArr = line.split(" ");
-        if (userArr.length < 2) {
+        if (userArr.length < 2 || line.substring(9).split(" /by")[0].trim().equals("")) {
             throw new PhiException("No description given. Please give one!");
         } else {
             // remove task type; "deadline " contains 9 characters
@@ -61,7 +61,7 @@ public class Parser {
      */
     public static Task parseEvent(String line) throws PhiException {
         String[] userArr = line.split(" ");
-        if (userArr.length < 2) {
+        if (userArr.length < 2 || line.substring(6).split(" /from")[0].trim().equals("")) {
             throw new PhiException("No description given. Please give one!");
         } else {
             // remove task type; "event " contains 6 characters
