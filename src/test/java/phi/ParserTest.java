@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 
 
 public class ParserTest {
-    // For parseTodo
     @Test
     public void testParseTodo_validInput() {
         String line = "todo Buy milk";
@@ -35,7 +34,6 @@ public class ParserTest {
         assertEquals("No description given. Please give one!", exception.getMessage());
     }
 
-    // For parseTodo
     @Test
     public void testParseDeadline_validInput() {
         String line = "deadline Submit report /by 2025-02-01";
