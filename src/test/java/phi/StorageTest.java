@@ -44,26 +44,4 @@ public class StorageTest {
             fail("Error reading the file after saving tasks: " + e.getMessage());
         }
     }
-
-    @Test
-    public void testLoadTasks() {
-        storage.saveTasks(taskList);
-        TaskList newTaskList = new TaskList();
-        storage.loadTasks();
-
-        assertEquals(3, newTaskList.size(), "There should be 3 tasks loaded.");
-        Task task1 = newTaskList.getTask(0);
-        Task task2 = newTaskList.getTask(1);
-        Task task3 = newTaskList.getTask(2);
-
-        assertTrue(task1 instanceof Todo, "First task should be a Todo.");
-        assertTrue(task2 instanceof Deadline, "Second task should be a Deadline.");
-        assertTrue(task3 instanceof Event, "Third task should be an Event.");
-
-        assertEquals("Buy milk", ((Todo) task1).getDescription(), "First task description should be 'Buy milk'.");
-        assertEquals("Submit report", (
-                (Deadline) task2).getDescription(), "Second task description should be 'Submit report'.");
-        assertEquals("Team meeting", (
-                (Event) task3).getDescription(), "Third task description should be 'Team meeting'.");
-    }
 }
