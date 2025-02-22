@@ -46,7 +46,7 @@ public class Ui {
      * @return A confirmation message about the task addition.
      */
     public String printAdded(Task task, int size) {
-        return "Got it. I've added this task:\n" + task + "\n" + this.taskCount(size);
+        return "Got it. I've added this task:\n    " + task + "\n" + this.taskCount(size);
     }
 
     /**
@@ -57,7 +57,7 @@ public class Ui {
      * @return A confirmation message about the task deletion.
      */
     public String printDeleted(Task task, int size) {
-        return "Noted. I've removed this task:\n" + task + "\n" + this.taskCount(size);
+        return "Noted. I've removed this task:\n    " + task + "\n" + this.taskCount(size);
     }
 
     /**
@@ -67,7 +67,7 @@ public class Ui {
      * @return A confirmation message about the task being marked as done.
      */
     public String printMarked(Task task) {
-        return "Nice! I've marked this task as done:\n" + task + "\n\n";
+        return "Nice! I've marked this task as done:\n    " + task + "\n\n";
     }
 
     /**
@@ -77,7 +77,7 @@ public class Ui {
      * @return A confirmation message about the task being marked as not done yet.
      */
     public String printUnmarked(Task task) {
-        return "Ok, I've marked this task as not done yet:\n" + task + "\n\n";
+        return "Ok, I've marked this task as not done yet:\n    " + task + "\n\n";
     }
 
     /**
