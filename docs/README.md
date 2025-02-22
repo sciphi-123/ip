@@ -13,6 +13,7 @@ Phi allows us to keep track of the 3 main types of tasks in our lives:
 tasks with a deadline **(deadline)**, tasks which involve 
 attending a function **(event)** and tasks without a deadline **(todo)**.
 
+
 ### 1. Add a 'deadline' task
 ***
 To add a 'deadline' task, use the ```deadline``` command followed by 
@@ -65,6 +66,9 @@ Now you have 1 task in the list.
 ```
 
 ### Part B: Removing Tasks
+Phi allows us to remove tasks which might no longer 
+be relevant to our lives.
+
 ### 4. Delete a task
 ***
 To delete a task of any type, use the ```delete``` command followed by the task number.
@@ -81,7 +85,15 @@ Noted. I've removed this task:
 Now you have 3 tasks in the list.
 ```
 
-## Part C: Additional Features
+### Part C: Additional Features
+Phi offers a series of additional features, namely:
+- **Find** task(s) using keyword
+- **List** existing tasks
+- **Mark** task as done
+- **Unmark** task as done
+- **Sort** existing list of tasks
+
+
 ### 5. Find task(s) using keyword
 ***
 To find task(s) based on keyword, use the ```find``` command followed by the keyword.
@@ -145,9 +157,9 @@ OK, I've marked this task as not done yet:
     [T][ ] apply leave
 ```
 
-### 9. Sort list of tasks 
+### 9. Sort existing list of tasks 
 ***
-To sort the list of tasks, use the ```sort``` command.
+To sort the existing list of tasks, use the ```sort``` command.
 
 The tasks are sorted based on the following rules, in order of priority:
 1. **Task Type:** **[D] tasks (i.e. 'deadline' tasks)** appear first,
